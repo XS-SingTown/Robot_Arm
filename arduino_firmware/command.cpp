@@ -23,11 +23,13 @@ bool Command::handleGcode() {
     if (c == '\r') {
        bool b = processMessage(message);
        message = "";
+      //  Serial.print(F("Free heap: 1"));
        return b;
     } else {
        message += c; 
     }
   }
+  // Serial.print(F("Free heap: 2"));
   return false;
 }
 
@@ -84,6 +86,7 @@ void Command::value_segment(String msg_segment){
 
 
 Cmd Command::getCmd() const {
+  // Serial.print(F("Free heap: 1"));
   return new_command; 
 }
 

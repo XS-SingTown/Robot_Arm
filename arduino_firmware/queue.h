@@ -30,7 +30,7 @@ Queue<Element>::Queue(int alen) {
 
 template <typename Element>
 Queue<Element>::~Queue() {
-  delete data;
+  delete[] data;
 }
 
 template <typename Element>
@@ -40,7 +40,10 @@ Queue<Element>::Queue(Queue<Element>& q) {
 
 template <typename Element>
 bool Queue<Element>::push(Element elem) {
-  data[(start + count++) % len] = elem;
+  if (isFull()) return false;
+  data[(start + count) % len] = elem;
+  count++;
+  return true;
 }
 
 template <typename Element>

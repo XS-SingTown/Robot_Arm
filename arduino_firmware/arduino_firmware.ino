@@ -156,7 +156,9 @@ void loop() {
 
   if (!queue.isFull()) {
     if (command.handleGcode()) {
+      // Serial.print(F("Free heap: 0"));
       queue.push(command.getCmd());
+      // Serial.print(F("Free heap: 1"));
     }
   }
   if ((!queue.isEmpty()) && interpolator.isFinished()) {
